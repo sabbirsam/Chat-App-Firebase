@@ -6,7 +6,7 @@ const Chats = () => {
        <div className="caf_userChat">
           <img src="https://images.pexels.com/photos/12292693/pexels-photo-12292693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           <div className="caf_userChatInfo">
-            <span>Jane</span>
+            <span>Otoshi</span>
             <p>Hello sam! How are you</p>
           </div>
       </div>
@@ -30,7 +30,7 @@ const Chats = () => {
       <div className="caf_userChat">
           <img src="https://images.pexels.com/photos/12303653/pexels-photo-12303653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
           <div className="caf_userChatInfo">
-            <span>Mestionka</span>
+            <span>Jannati</span>
             <p>Hello sam! How are you</p>
           </div>
       </div>

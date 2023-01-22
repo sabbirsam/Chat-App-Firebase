@@ -188,9 +188,37 @@
         }
         .caf_chat{
             flex: 2;
+
+            //design
+            .caf_chatInfo{
+                height: 50px;
+                background-color: #5d5b8d;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 10px;
+                color: lightgray;
+            }
+
+            //icon
+            .caf_chatIcons{
+                display: flex;
+                gap: 10px;
+
+                img{
+                    height: 24px;
+                    cursor: pointer;
+                }
+            }
+
+            //Messages
+            .caf_messages{
+                background-color: #ddddf7;
+                padding: 10px;
+            }
         }
 
-        //Main Chat BOX
+       
         
     }
 }
