@@ -218,6 +218,10 @@
                 height: calc(100% - 160px); //caf_chatInfo and caf_input 50 + 50 + up down 10 +10 + 10 +10= 70 = 140 + and caf_messages 10 + 10 
                 
                 overflow-y: scroll;
+                &::-webkit-scrollbar {
+                    width: 0px;
+                }
+
                 //Single Message
                 .caf_message{
                     display: flex;
