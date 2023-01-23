@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import Add from "../img/addAvatar.png"
 // import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import { auth, storage } from "../firebase"; //getAuth to auth
+import { auth, db, storage } from "../firebase"; //getAuth to auth
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { doc, setDoc } from "firebase/firestore"; 
 
 const Register = () => {
     const [err, setErr] = useState(false);
@@ -33,15 +34,27 @@ const Register = () => {
               }, 
               () => {
                 getDownloadURL(uploadTask.snapshot.ref).then( async (downloadURL) => {
-                //   console.log('File available at', downloadURL);
+                    //   console.log('File available at', downloadURL);
                     await updateProfile(res.user,{
                         displayName, //displayName:displayName,
                         photoURL: downloadURL,
                     });
+
+                    // set Doc and database 
+                    await setDoc(doc(db, "users", res.user.uid),{
+                        uid: res.user.uid,
+                        displayName,
+                        email,
+                        photoURL: downloadURL,
+                    })
+
                 });
+                
               }
             );
             // end 
+
+            
         }
         catch(err){
             setErr(true);
