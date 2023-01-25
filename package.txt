@@ -1,5 +1,7 @@
  npm install sass
  npm install firebase
+ npm install react-router-dom
+ 
 
  Credentials 
 
@@ -16,6 +18,49 @@ const firebaseConfig = {
   storageBucket: "chat-cdf6e.appspot.com",
   messagingSenderId: "987723989798",
   appId: "1:987723989798:web:bad006da5a6bdaf22977e7"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+chakrabortyritu51@gmail.com
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyDEUcbk15osDH2CfT5jydTlrDiroSCzSvc",
+  authDomain: "chat-bcd2a.firebaseapp.com",
+  projectId: "chat-bcd2a",
+  storageBucket: "chat-bcd2a.appspot.com",
+  messagingSenderId: "577428704421",
+  appId: "1:577428704421:web:c6f41d744d1b49d71e914c"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+
+
+
+2nd  - Using now 
+
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyD9lbJ20mD4zF9G_1PCy_qo55z5Kd-sh4k",
+  authDomain: "cafchat-b70a0.firebaseapp.com",
+  projectId: "cafchat-b70a0",
+  storageBucket: "cafchat-b70a0.appspot.com",
+  messagingSenderId: "68996474454",
+  appId: "1:68996474454:web:7ced2235a907e0a654fdf7"
 };
 
 // Initialize Firebase

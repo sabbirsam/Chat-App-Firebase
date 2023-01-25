@@ -4,12 +4,12 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyD97U9l8jd-YL8lBz0DUyDPuC8eJ2-lArk",
-  authDomain: "chat-cdf6e.firebaseapp.com",
-  projectId: "chat-cdf6e",
-  storageBucket: "chat-cdf6e.appspot.com",
-  messagingSenderId: "987723989798",
-  appId: "1:987723989798:web:bad006da5a6bdaf22977e7"
+  apiKey: "AIzaSyD9lbJ20mD4zF9G_1PCy_qo55z5Kd-sh4k",
+  authDomain: "cafchat-b70a0.firebaseapp.com",
+  projectId: "cafchat-b70a0",
+  storageBucket: "cafchat-b70a0.appspot.com",
+  messagingSenderId: "68996474454",
+  appId: "1:68996474454:web:7ced2235a907e0a654fdf7"
 };
 
 // Initialize Firebase

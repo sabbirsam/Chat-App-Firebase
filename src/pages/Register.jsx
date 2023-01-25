@@ -5,9 +5,13 @@ import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth, db, storage } from "../firebase"; //getAuth to auth
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
 import { doc, setDoc } from "firebase/firestore"; 
+import {Link, useNavigate} from "react-router-dom"
 
 const Register = () => {
     const [err, setErr] = useState(false);
+    const navigate = useNavigate()
+
+
     const handleSubmit = async(e) =>{
         e.preventDefault()
         // console.log(e.target[0].value);
@@ -22,13 +26,9 @@ const Register = () => {
 
         try{
             const res = await createUserWithEmailAndPassword(auth, email, password)
-
             const storageRef = ref(storage, displayName);
-            
             const uploadTask = uploadBytesResumable(storageRef, file);
-        
             uploadTask.on( 
-
               (error) => {
                 setErr(true)
               }, 
@@ -46,22 +46,23 @@ const Register = () => {
                         displayName,
                         email,
                         photoURL: downloadURL,
-                    })
+                    });
+
+                    // create user chat db once register done
+                    await setDoc(doc(db, "userChats", res.user.uid),{});
+                    //Navigate
+                    navigate("/");
 
                 });
-                
               }
             );
             // end 
-
-            
         }
         catch(err){
             setErr(true);
             console.log(err)
         }
-       
-    }
+    };
     return(
         <div className="caf_formContainer">
             <div className="caf_fromWrapper">
@@ -79,7 +80,7 @@ const Register = () => {
                     <button>Sign up</button>
                 </form>
                 {err && <p>Something is worng</p> }
-                <p>You do have an account? Login</p>
+                <p>You do have an account?  <Link to={"/login"}>Login</Link></p>
             </div>
         </div>
     )
