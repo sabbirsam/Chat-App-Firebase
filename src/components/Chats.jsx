@@ -1,55 +1,47 @@
-import React from 'react'
+import { doc, onSnapshot } from 'firebase/firestore';
+import React, { useContext, useEffect, useState } from 'react'
+import { AuthContext } from '../context/AuthContext';
+import { db } from '../firebase';
 
 const Chats = () => {
+  const [chats, setChats] = useState([])
+  const {currentUser} = useContext(AuthContext);
+
+  // fetch all chats from userChat 
+  useEffect(()=>{
+   //
+    const getChats = () =>{
+      //realtime chagnes fetch
+      const unsub = onSnapshot(doc(db, "userChats", currentUser.uid), (doc) => {
+            // console.log("Current data: ", doc.data());
+            setChats(doc.data());
+        });
+
+        // cleanup 
+        return()=>{
+          unsub();
+        };
+    }
+
+    //If we have currentUser.uid then call this function else it may generate error as first time we dont have any id
+    currentUser.uid && getChats();
+
+  },[currentUser.uid])
+
+// console.log(chats);
+console.log(Object.entries(chats));
+
   return (
     <div className='caf_chats'>
-       <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/12292693/pexels-photo-12292693.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Otoshi</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
-
-      <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/8767672/pexels-photo-8767672.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Antika</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
-
-      <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/3968442/pexels-photo-3968442.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Bithi</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
-
-      <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/12303653/pexels-photo-12303653.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Jannati</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
-
-      <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/7688194/pexels-photo-7688194.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Khalisi</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
-
-      <div className="caf_userChat">
-          <img src="https://images.pexels.com/photos/9016469/pexels-photo-9016469.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="" />
-          <div className="caf_userChatInfo">
-            <span>Jusamin</span>
-            <p>Hello sam! How are you</p>
-          </div>
-      </div>
+      {Object.entries(chats)?.map(chat=>(
+        <div className="caf_userChat" key={chat[0]}>
+            <img src={chat[1].userInfo.photoURL} alt="" />
+            <div className="caf_userChatInfo">
+              <span>{chat[1].userInfo.displayName}</span>
+              <p>{chat[1].userInfo.lastMessage?.text }</p>
+            </div>
+        </div>
+      ))}
     </div>
   )
 }
