@@ -62,8 +62,8 @@ const Input = () => {
       [data.chatId+".date"]:serverTimestamp()
     })
     
-    // setText("");
-    // setImg(null);
+    setText("");
+    setImg(null);
 
      // Add and update last message on chat conversation image other user
      await updateDoc(doc(db, "userChats", data.user.uid),{
@@ -73,8 +73,8 @@ const Input = () => {
         [data.chatId+".date"]:serverTimestamp()
       });
 
-      setText("");
-      setImg(null);
+      // setText("");
+      // setImg(null);
 
   };
   return (
