@@ -31,14 +31,21 @@ const Search = () => {
       e.code === "Enter" && handleSearch();
   };
 
+  console.log(err);
+
+  //Add selected conversation in the firebase and fetch all data
+  const handleSelect = () =>{
+    //Group checking are those exist or not= > chats in firestore but if not exist then create another new
   
+  }
+
   return (
     <div className='caf_search'>
       <div className="caf_searchForm">
         <input type="text" placeholder='Find a user' onKeyDown={handleKey} onChange={(e)=> setUsername(e.target.value)}/>
       </div>
       {err && <span>User not found.</span>}
-      { user && <div className="caf_userChat">
+      { user && <div className="caf_userChat" onClick={handleSelect}>
           <img src={user.photoURL} alt="" />
           <div className="caf_userChatInfo">
             <span>{user.displayName}</span>
